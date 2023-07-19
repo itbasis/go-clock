@@ -16,7 +16,7 @@ jobs:
         go: ["1.19.x", "1.20.x"]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -26,15 +26,3 @@ jobs:
 
     - name: Test
       run: go test -v -race ./...
-
-  test-asdf:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install asdf & tools
-        uses: asdf-vm/actions/install@v2
-
-      - name: Tests
-        run: go test -v ./...
