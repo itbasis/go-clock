@@ -1,0 +1,19 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+max_line_length = 150
+indent_size = tab
+indent_style = tab
+tab_width = 4
+ij_smart_tabs = true
+
+[*.go]
+ij_go_run_go_fmt_on_reformat = true
+ij_go_group_stdlib_imports = true
+ij_go_move_all_imports_in_one_declaration = true
+ij_go_remove_redundant_import_aliases = true
+ij_go_use_back_quotes_for_imports = false
+ij_go_import_sorting = gofmt
