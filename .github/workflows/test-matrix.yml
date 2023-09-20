@@ -23,7 +23,7 @@ jobs:
           check-latest: true
 
       - name: Install ginkgo
-        run: go install github.com/onsi/ginkgo/v2/ginkgo@latest
+        run: GOBIN=$PWD/bin go install github.com/onsi/ginkgo/v2/ginkgo@latest
 
       - name: Tests
-        run: ginkgo -r -race --cover --coverprofile=.coverage.out
+        run: $PWD/bin/ginkgo -r -race --cover --coverprofile=.coverage.out

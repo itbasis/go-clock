@@ -15,10 +15,10 @@ jobs:
         uses: asdf-vm/actions/install@v2
 
       - name: Install ginkgo
-        run: go install github.com/onsi/ginkgo/v2/ginkgo@latest
+        run: GOBIN=$PWD/bin go install github.com/onsi/ginkgo/v2/ginkgo@latest
 
       - name: Tests
-        run: ginkgo -r -race --cover --coverprofile=.coverage.out
+        run: $PWD/bin/ginkgo -r -race --cover --coverprofile=.coverage.out
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
