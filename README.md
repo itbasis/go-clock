@@ -2,6 +2,8 @@ clock
 =====
 
 [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/itbasis/go-clock)
+[![codecov](https://codecov.io/gh/itbasis/go-clock/graph/badge.svg?token=NgqYRaNbNb)](https://codecov.io/gh/itbasis/go-clock)
+[![Go Report Card](https://goreportcard.com/badge/github.com/itbasis/go-clock)](https://goreportcard.com/report/github.com/itbasis/go-clock)
 
 Clock is a small library for mocking time in Go. It provides an interface
 around the standard library's [`time`][time] package so that the application
