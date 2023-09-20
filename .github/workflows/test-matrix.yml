@@ -2,9 +2,7 @@ name: test Go using version matrix
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
 
 jobs:
 
@@ -16,13 +14,16 @@ jobs:
         go: ["1.20.x", "1.21.x"]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: ${{ matrix.go }}
-        check-latest: true
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: true
 
-    - name: Test
-      run: go test -v -race ./...
+      - name: Install ginkgo
+        run: go install github.com/onsi/ginkgo/v2/ginkgo@latest
+
+      - name: Tests
+        run: ginkgo -r -race --cover --coverprofile=.coverage.out

@@ -39,7 +39,6 @@ linters:
     - prealloc
     - promlinter
     - revive
-    - structcheck
     - wastedassign
     - tagliatelle
     - tenv
