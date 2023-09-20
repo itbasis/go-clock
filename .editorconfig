@@ -17,3 +17,6 @@ ij_go_move_all_imports_in_one_declaration = true
 ij_go_remove_redundant_import_aliases = true
 ij_go_use_back_quotes_for_imports = false
 ij_go_import_sorting = gofmt
+
+[*.yml]
+tab_width = 2
