@@ -22,8 +22,10 @@ jobs:
           go-version: ${{ matrix.go }}
           check-latest: true
 
-      - name: Install ginkgo
-        run: GOBIN=$PWD/bin go install github.com/onsi/ginkgo/v2/ginkgo@latest
+      - run: make go-all-tests
 
-      - name: Tests
-        run: $PWD/bin/ginkgo -r -race --cover --coverprofile=.coverage.out
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "junit-report.xml"
+        if: always()

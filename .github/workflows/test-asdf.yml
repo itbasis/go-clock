@@ -14,11 +14,13 @@ jobs:
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
 
-      - name: Install ginkgo
-        run: GOBIN=$PWD/bin go install github.com/onsi/ginkgo/v2/ginkgo@latest
+      - run: make go-all-tests
 
-      - name: Tests
-        run: $PWD/bin/ginkgo -r -race --cover --coverprofile=.coverage.out
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "junit-report.xml"
+        if: always()
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3

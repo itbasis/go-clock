@@ -1,9 +1,10 @@
 .DS_Store
+
 tmp.*
 
 # Go
 bin/
-report.xml
+junit-report.xml
 .coverage.out
 .coverage-*.out
 
