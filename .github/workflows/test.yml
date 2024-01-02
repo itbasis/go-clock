@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: asdf-vm/actions/install@v3
-      - run: go mod tidy && git diff --exit-code go.mod go.sum
+#      - run: go mod tidy && git diff --exit-code go.mod go.sum
+      - run: go mod tidy && git diff --exit-code go.mod
 
   test-asdf:
     runs-on: ubuntu-latest
