@@ -1,0 +1,61 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-gomod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: asdf-vm/actions/install@v3
+      - run: go mod tidy && git diff --exit-code go.mod go.sum
+
+  test-asdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install asdf & tools
+        uses: asdf-vm/actions/install@v3
+
+      - run: make go-all-tests
+
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "junit-report.xml"
+        if: always()
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./.coverage.out
+
+  test-matrix:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go: ["1.21.x"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: true
+
+      - run: make go-all-tests
+
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "junit-report.xml"
+        if: always()

@@ -17,7 +17,7 @@ type Duration = time.Duration
 // is a real-time clock which simply wraps the time package's functions. The
 // second is a mock clock which will only change when
 // programmatically adjusted.
-type Clock interface {
+type Clock interface { //nolint:interfacebloat
 	After(d time.Duration) <-chan time.Time
 	AfterFunc(d time.Duration, f func()) *Timer
 	Now() time.Time
