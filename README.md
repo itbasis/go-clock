@@ -21,7 +21,7 @@ Your application can maintain a `Clock` variable that will allow realtime and
 mock clocks to be interchangeable. For example, if you had an `Application` type:
 
 ```go
-import "github.com/itbasis/go-clock"
+import "github.com/itbasis/go-clock/v2"
 
 type Application struct {
 	Clock clock.Clock
@@ -48,12 +48,12 @@ In your tests, you will want to use a `Mock` clock:
 import (
 	"testing"
 
-	"github.com/itbasis/go-clock"
+	"github.com/itbasis/go-clock/v2"
 )
 
 func TestApplication_DoSomething(t *testing.T) {
-	mock := clock.NewMock()
-	app := Application{Clock: mock}
+	mockClock := clock.NewMock()
+	app := Application{Clock: mockClock}
 	...
 }
 ```
