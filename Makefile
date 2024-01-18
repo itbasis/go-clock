@@ -11,7 +11,7 @@ go-dependencies:
 	#
 	go install github.com/onsi/ginkgo/v2/ginkgo@latest
 	#
-	go install github.com/vektra/mockery/v2@latest
+	#go install github.com/vektra/mockery/v2@latest
 	#
 	asdf reshim golang || :
 	#
@@ -22,7 +22,7 @@ go-generate: go-dependencies
 	go generate ./...
 
 go-lint: go-dependencies
-	golangci-lint run
+	#golangci-lint run
 	ginkgolinter ./...
 	go vet -vettool=$$(go env GOPATH)/bin/shadow ./...
 

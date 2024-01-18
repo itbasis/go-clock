@@ -1,44 +1,13 @@
-package clock
+package mock
 
 import (
 	"context"
 	"fmt"
 	"sync"
 	"time"
+
+	"github.com/itbasis/go-clock/v2/pkg"
 )
-
-func (m *Mock) WithTimeout(parent context.Context, timeout time.Duration) (context.Context, context.CancelFunc) {
-	return m.WithDeadline(parent, m.Now().Add(timeout))
-}
-
-func (m *Mock) WithDeadline(parent context.Context, deadline time.Time) (context.Context, context.CancelFunc) {
-	if cur, ok := parent.Deadline(); ok && cur.Before(deadline) {
-		// The current deadline is already sooner than the new one.
-		return context.WithCancel(parent)
-	}
-
-	ctx := &timerCtx{clock: m, parent: parent, deadline: deadline, done: make(chan struct{})}
-	propagateCancel(parent, ctx)
-
-	dur := m.Until(deadline)
-
-	if dur <= 0 {
-		ctx.cancel(context.DeadlineExceeded) // deadline has already passed
-
-		return ctx, func() {}
-	}
-
-	ctx.Lock()
-	defer ctx.Unlock()
-
-	if ctx.err == nil {
-		ctx.timer = m.AfterFunc(dur, func() {
-			ctx.cancel(context.DeadlineExceeded)
-		})
-	}
-
-	return ctx, func() { ctx.cancel(context.Canceled) }
-}
 
 // propagateCancel arranges for child to be canceled when parent is.
 func propagateCancel(parent context.Context, child *timerCtx) {
@@ -58,13 +27,13 @@ func propagateCancel(parent context.Context, child *timerCtx) {
 type timerCtx struct {
 	sync.Mutex
 
-	clock    Clock
+	clock    pkg.Clock
 	parent   context.Context //nolint:containedctx
 	deadline time.Time
 	done     chan struct{}
 
 	err   error
-	timer *Timer
+	timer pkg.Timer
 }
 
 func (c *timerCtx) cancel(err error) {
