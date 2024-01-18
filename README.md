@@ -105,3 +105,19 @@ mock.Add(10 * time.Second)
 // This prints 10.
 fmt.Println(count)
 ```
+
+### Working with context
+
+It is possible to put clock into context without passing it directly to the function:
+
+```go
+clock := clock.New()
+ctx := clock.WithContext(context.Background(), clock)
+do(ctx)
+
+func do(ctx context.Context) {
+	clock := clock.FromContext(ctx)
+	// do some staff..
+}
+
+```
