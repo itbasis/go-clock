@@ -2,6 +2,7 @@ clock
 =====
 
 [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/itbasis/go-clock)
+![GitHub Release](https://img.shields.io/github/v/release/itbasis/go-clock)
 [![codecov](https://codecov.io/gh/itbasis/go-clock/graph/badge.svg?token=NgqYRaNbNb)](https://codecov.io/gh/itbasis/go-clock)
 [![Go Report Card](https://goreportcard.com/badge/github.com/itbasis/go-clock)](https://goreportcard.com/report/github.com/itbasis/go-clock)
 
