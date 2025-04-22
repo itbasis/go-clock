@@ -6,6 +6,9 @@ clock
 [![codecov](https://codecov.io/gh/itbasis/go-clock/graph/badge.svg?token=NgqYRaNbNb)](https://codecov.io/gh/itbasis/go-clock)
 [![Go Report Card](https://goreportcard.com/badge/github.com/itbasis/go-clock)](https://goreportcard.com/report/github.com/itbasis/go-clock)
 
+> [!IMPORTANT]
+> This repository will no longer be developed - please use [clockwork](https://github.com/jonboulle/clockwork), which has similar functionality but a larger community
+
 Clock is a small library for mocking time in Go. It provides an interface
 around the standard library's [`time`][time] package so that the application
 can use the realtime clock while tests can use the mock clock.
